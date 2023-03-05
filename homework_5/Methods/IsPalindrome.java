@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 public class IsPalindrome {
     public static boolean isPalindrome(String source){
-        String reverse = "";
-        for (int i = source.length() - 1; i >= 0; i--){
-            reverse += source.charAt(i);
+        if(source.isEmpty())
+            return false;
+        else {
+            String reverse = "";
+            for (int i = source.length() - 1; i >= 0; i--) {
+                reverse += source.charAt(i);
+            }
+            return source.toLowerCase().equals(reverse.toLowerCase());
         }
-        if(source.toLowerCase().equals(reverse.toLowerCase()))
-            return true;
-        else return false;
     }
 
     public static void main(String[] args){

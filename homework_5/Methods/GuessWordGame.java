@@ -5,31 +5,36 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessWordGame {
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado" , "broccoli", "carrot", "cherry",
-                "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", " pea", "peanut",
-                "pear", "pepper", "pineapple", "pumpkin", "potato"};
-        String randomWord = words[random.nextInt(words.length)];
+    Scanner scanner = new Scanner(System.in);
+    Random random = new Random();
+    private final String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado" , "broccoli", "carrot", "cherry",
+            "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", " pea", "peanut",
+            "pear", "pepper", "pineapple", "pumpkin", "potato"};
+    String randomWord = words[random.nextInt(words.length)];
+
+    public void StartGame(){
         System.out.println(Arrays.toString(words));
         System.out.print("Guess a word: ");
-        String guess_word = scanner.nextLine().toLowerCase();
-        while (!randomWord.equals(guess_word)){
+        String guessWord = scanner.nextLine().toLowerCase();
+        while (!randomWord.equals(guessWord)){
             StringBuilder stringBuilder = new StringBuilder ("###############");
-            int shortestWordLenght;
-            shortestWordLenght = randomWord.length() < guess_word.length() ?
-                    randomWord.length() : guess_word.length();
+            int shortestWordLenght = randomWord.length() < guessWord.length() ?
+                    randomWord.length() : guessWord.length();
             for (int i = 0; i < shortestWordLenght; i++){
-                if (guess_word.charAt(i) == randomWord.charAt(i)) {
-                    stringBuilder.setCharAt(i, guess_word.charAt(i));
+                if (guessWord.charAt(i) == randomWord.charAt(i)) {
+                    stringBuilder.setCharAt(i, guessWord.charAt(i));
                 }
             }
             System.out.println("Hint: " + stringBuilder);
             System.out.print("Wrong! Try again: ");
-            guess_word = scanner.next().toLowerCase();
+            guessWord = scanner.next().toLowerCase();
         }
-        if (randomWord.equals(guess_word))
+        if (randomWord.equals(guessWord))
             System.out.println("Congratulations! You win!");
+    }
+
+    public static void main(String[] args) {
+        GuessWordGame guessWordGame = new GuessWordGame();
+        guessWordGame.StartGame();
     }
 }
