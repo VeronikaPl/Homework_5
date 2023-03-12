@@ -5,14 +5,19 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GuessWordGame {
-    Scanner scanner = new Scanner(System.in);
-    Random random = new Random();
     private final String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado" , "broccoli", "carrot", "cherry",
             "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", " pea", "peanut",
             "pear", "pepper", "pineapple", "pumpkin", "potato"};
+    Scanner scanner = new Scanner(System.in);
+    Random random = new Random();
     String randomWord = words[random.nextInt(words.length)];
 
-    public void StartGame(){
+    public static void main(String[] args) {
+        GuessWordGame guessWordGame = new GuessWordGame();
+        guessWordGame.startGame();
+    }
+
+    public void startGame(){
         System.out.println(Arrays.toString(words));
         System.out.print("Guess a word: ");
         String guessWord = scanner.nextLine().toLowerCase();
@@ -31,10 +36,5 @@ public class GuessWordGame {
         }
         if (randomWord.equals(guessWord))
             System.out.println("Congratulations! You win!");
-    }
-
-    public static void main(String[] args) {
-        GuessWordGame guessWordGame = new GuessWordGame();
-        guessWordGame.StartGame();
     }
 }
